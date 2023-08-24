@@ -10,6 +10,7 @@ Feature Technology:
 - Glide
 - Constraint Layout
 - Webview
+- NestedScrollView
 
 
 * Application Screen Capture
