@@ -19,6 +19,7 @@ import com.example.movietask.utils.Constant
 import com.example.movietask.view.adapter.DiscoverAdapter
 import com.example.movietask.view.viewModel.DiscoverViewModel
 import com.example.movietask.view.viewModel.GenreViewModel
+import com.example.movietask.view.viewModel.VideosViewModel
 
 class MainActivity : AppCompatActivity() {
 

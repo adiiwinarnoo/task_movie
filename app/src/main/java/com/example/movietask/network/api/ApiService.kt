@@ -35,4 +35,10 @@ interface ApiService {
         @Query("api_key") apiKey : String,
     ) : retrofit2.Call<ResponseReviews>
 
+    @GET("/3/movie/{movie_id}/videos")
+    fun getVideos(
+        @Path("movie_id") movieId : Int,
+        @Query("api_key") apiKey : String,
+    ) : retrofit2.Call<ResponseMoviesVideos>
+
 }

@@ -7,10 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".view.ui.MovieDetailActivity">
 
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
     <ImageView
         android:id="@+id/img_thumbnail"
         android:layout_width="0dp"
         android:layout_height="350dp"
+        android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
