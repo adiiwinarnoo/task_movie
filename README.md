@@ -9,6 +9,7 @@ Feature Technology:
 - LifeCycle live data
 - Glide
 - Constraint Layout
+- Webview
 
 
 Application Screen Capture
