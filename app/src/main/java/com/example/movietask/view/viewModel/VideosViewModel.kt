@@ -10,11 +10,11 @@ class VideosViewModel : ViewModel() {
     val videosRepo = VideosRepository()
     var videoData = MutableLiveData<ResponseMoviesVideos>()
 
-    fun getMovies(apiKey : String, movieId : Int):MutableLiveData<ResponseMoviesVideos>{
-        videosRepo.getVideos(apiKey,movieId){
-            videoData.postValue(it)
-        }
-        return videoData
-    }
+//    fun getMovies(apiKey : String, movieId : Int):MutableLiveData<ResponseMoviesVideos>{
+//        videosRepo.getVideos(apiKey,movieId){
+//            videoData.postValue(it)
+//        }
+//        return videoData
+//    }
 
 }

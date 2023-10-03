@@ -9,30 +9,30 @@ import retrofit2.Response
 
 class MovieByIdRepository {
 
-    val apiConfig = ApiConfig()
-
-    fun getMovieById(idMovie : Int,apiKey : String, onResult: (result : ResponseMovieById)-> Unit){
-        apiConfig.server.getMovieDetails(movieId = idMovie, apiKey =apiKey).enqueue(object : Callback<ResponseMovieById>{
-            override fun onResponse(call: Call<ResponseMovieById>, response: Response<ResponseMovieById>) {
-                movieByIdSuccess(response, onResult)
-            }
-
-            override fun onFailure(call: Call<ResponseMovieById>, t: Throwable) {
-                val authError = "Please Check Your Connection"
-                val default = ResponseMovieById(message = authError)
-                onResult(default)
-            }
-
-        })
-    }
-
-    fun movieByIdSuccess(response : Response<ResponseMovieById>, onResult:
-        (result: ResponseMovieById) -> Unit){
-        when (response.code()){
-            200 -> {
-                onResult(response.body()!!)
-            }
-        }
-    }
+//    val apiConfig = ApiConfig()
+//
+//    fun getMovieById(idMovie : Int,apiKey : String, onResult: (result : ResponseMovieById)-> Unit){
+//        apiConfig.server.getMovieDetails(movieId = idMovie, apiKey =apiKey).enqueue(object : Callback<ResponseMovieById>{
+//            override fun onResponse(call: Call<ResponseMovieById>, response: Response<ResponseMovieById>) {
+//                movieByIdSuccess(response, onResult)
+//            }
+//
+//            override fun onFailure(call: Call<ResponseMovieById>, t: Throwable) {
+//                val authError = "Please Check Your Connection"
+//                val default = ResponseMovieById(message = authError)
+//                onResult(default)
+//            }
+//
+//        })
+//    }
+//
+//    fun movieByIdSuccess(response : Response<ResponseMovieById>, onResult:
+//        (result: ResponseMovieById) -> Unit){
+//        when (response.code()){
+//            200 -> {
+//                onResult(response.body()!!)
+//            }
+//        }
+//    }
 
 }

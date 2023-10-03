@@ -10,11 +10,11 @@ class MovieByIdViewModel : ViewModel() {
     var repoMovieById = MovieByIdRepository()
     var dataMovieById = MutableLiveData<ResponseMovieById>()
 
-    fun getMovieById(idMovie : Int, apiKey : String): MutableLiveData<ResponseMovieById>{
-        repoMovieById.getMovieById(idMovie,apiKey){
-            dataMovieById.postValue(it)
-        }
-        return dataMovieById
-    }
+//    fun getMovieById(idMovie : Int, apiKey : String): MutableLiveData<ResponseMovieById>{
+//        repoMovieById.getMovieById(idMovie,apiKey){
+//            dataMovieById.postValue(it)
+//        }
+//        return dataMovieById
+//    }
 
 }

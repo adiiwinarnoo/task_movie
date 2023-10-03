@@ -10,11 +10,11 @@ class GenreViewModel : ViewModel() {
     var genreRepo = GenreRepository()
     var dataGenre = MutableLiveData<ResponseGenreMovies>()
 
-    fun getGenreViewModel(apiKey : String) : MutableLiveData<ResponseGenreMovies>{
-        genreRepo.getGenreMovies(apiKey){
-            dataGenre.postValue(it)
-        }
-        return dataGenre
-    }
+//    fun getGenreViewModel(apiKey : String) : MutableLiveData<ResponseGenreMovies>{
+//        genreRepo.getGenreMovies(apiKey){
+//            dataGenre.postValue(it)
+//        }
+//        return dataGenre
+//    }
 
 }

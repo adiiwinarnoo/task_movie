@@ -10,27 +10,27 @@ import retrofit2.Response
 
 class VideosRepository {
 
-    val apiConfig = ApiConfig()
-
-    fun getVideos(apiKey: String, movieId : Int, onResult : (result : ResponseMoviesVideos)-> Unit){
-        apiConfig.server.getVideos(movieId, apiKey).enqueue(object : Callback<ResponseMoviesVideos>{
-            override fun onResponse(call: Call<ResponseMoviesVideos>, response: Response<ResponseMoviesVideos>) {
-                getVideoSuccess(response, onResult)
-            }
-
-            override fun onFailure(call: Call<ResponseMoviesVideos>, t: Throwable) {
-                Log.d("API-VIDEOS", "onFailure: ${t.message}")
-            }
-
-        })
-    }
-
-    fun getVideoSuccess(response : Response<ResponseMoviesVideos>, onResult: (result: ResponseMoviesVideos) -> Unit){
-        when (response.code()){
-            200 -> {
-                onResult(response.body()!!)
-            }
-        }
-    }
+//    val apiConfig = ApiConfig()
+//
+//    fun getVideos(apiKey: String, movieId : Int, onResult : (result : ResponseMoviesVideos)-> Unit){
+//        apiConfig.server.getVideos(movieId, apiKey).enqueue(object : Callback<ResponseMoviesVideos>{
+//            override fun onResponse(call: Call<ResponseMoviesVideos>, response: Response<ResponseMoviesVideos>) {
+//                getVideoSuccess(response, onResult)
+//            }
+//
+//            override fun onFailure(call: Call<ResponseMoviesVideos>, t: Throwable) {
+//                Log.d("API-VIDEOS", "onFailure: ${t.message}")
+//            }
+//
+//        })
+//    }
+//
+//    fun getVideoSuccess(response : Response<ResponseMoviesVideos>, onResult: (result: ResponseMoviesVideos) -> Unit){
+//        when (response.code()){
+//            200 -> {
+//                onResult(response.body()!!)
+//            }
+//        }
+//    }
 
 }

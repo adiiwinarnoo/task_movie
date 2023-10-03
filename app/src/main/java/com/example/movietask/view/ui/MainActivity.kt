@@ -20,15 +20,21 @@ import com.example.movietask.view.adapter.DiscoverAdapter
 import com.example.movietask.view.viewModel.DiscoverViewModel
 import com.example.movietask.view.viewModel.GenreViewModel
 import com.example.movietask.view.viewModel.VideosViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     private var dataGenreModel = mutableListOf<String?>()
-    lateinit var genreViewModel : GenreViewModel
-    lateinit var genreNames : List<String>
-    lateinit var discoverViewModel : DiscoverViewModel
-    lateinit var discoverAdapter : DiscoverAdapter
+    lateinit var genreViewModel: GenreViewModel
+    lateinit var genreNames: List<String>
+    lateinit var discoverViewModel: DiscoverViewModel
+    lateinit var discoverVM : DiscoverViewModel
+    lateinit var discoverAdapter: DiscoverAdapter
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,29 +43,30 @@ class MainActivity : AppCompatActivity() {
 
         var apiKey = "a38ad1d2fd9237645392de32122554eb"
 
-        genreViewModel = ViewModelProvider(this)[GenreViewModel::class.java]
-        discoverViewModel = ViewModelProvider(this)[DiscoverViewModel::class.java]
-        getGenre(apiKey)
+//        genreViewModel = ViewModelProvider(this)[GenreViewModel::class.java]
+        discoverVM = ViewModelProvider(this)[DiscoverViewModel::class.java]
+//        getGenre(apiKey)
 
-        val genreMap = hashMapOf<String, Int>()
-        binding.spinnerGenre.setSelection(0)
-        getDiscover(apiKey)
-        binding.recyclerView.layoutManager = GridLayoutManager(this,2)
-
-        genreViewModel.dataGenre.observe(this) {
-            it?.genres?.forEach { genre ->
-                genre?.name?.let { name ->
-                    genre.id?.let { id ->
-                        genreMap[name] = id
-                    }
-                }
-                genreNames = mutableListOf("Pilih Genre") + it.genres.mapNotNull { it?.name } ?: emptyList()
-                val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genreNames)
-                binding.spinnerGenre.adapter = adapter
-            }
-        }
-        discoverViewModel.discoverData.observe(this){
-            discoverAdapter = DiscoverAdapter(it.results!!)
+//        val genreMap = hashMapOf<String, Int>()
+//        binding.spinnerGenre.setSelection(0)
+        getDc(apiKey)
+        binding.recyclerView.layoutManager = GridLayoutManager(this, 2)
+//
+//        genreViewModel.dataGenre.observe(this) {
+//            it?.genres?.forEach { genre ->
+//                genre?.name?.let { name ->
+//                    genre.id?.let { id ->
+//                        genreMap[name] = id
+//                    }
+//                }
+//                genreNames =
+//                    mutableListOf("Pilih Genre") + it.genres.mapNotNull { it?.name } ?: emptyList()
+//                val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genreNames)
+//                binding.spinnerGenre.adapter = adapter
+//            }
+//        }
+        discoverVM.dataDiscoverCoroutines.observe(this){
+            discoverAdapter = DiscoverAdapter(it.body()?.results!!)
             binding.recyclerView.adapter = discoverAdapter
 
             discoverAdapter.setItemClickListener(object : DiscoverAdapter.ItemClickListener{
@@ -71,22 +78,26 @@ class MainActivity : AppCompatActivity() {
             })
         }
 
-        binding.spinnerGenre.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val selectedGenreName = genreNames[p2]
-                val selectedGenreId = genreMap[selectedGenreName]
-                getDiscover(apiKey = apiKey, genreId = selectedGenreId)
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
-        }
+//        binding.spinnerGenre.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                val selectedGenreName = genreNames[p2]
+//                val selectedGenreId = genreMap[selectedGenreName]
+//                getDiscover(apiKey = apiKey, genreId = selectedGenreId)
+//            }
+//            override fun onNothingSelected(p0: AdapterView<*>?) {}
+//        }
 
     }
 
-    private fun getGenre(apiKey : String){
-        genreViewModel.getGenreViewModel(apiKey)
-    }
+//    private fun getGenre(apiKey: String) {
+//        genreViewModel.getGenreViewModel(apiKey)
+//    }
 
-    private fun getDiscover(apiKey: String,genreId : Int? = null){
-        discoverViewModel.getDiscover(apiKey = apiKey, genreId = genreId)
+//    private fun getDiscover(apiKey: String,genreId : Int? = null){
+//        discoverViewModel.getDiscover(apiKey = apiKey, genreId = genreId!!)
+//    }
+
+    private fun getDc(apiKey : String,genreId : Int? = null){
+        discoverVM.getDiscoverUsingCoroutines(apiKey = apiKey, genreId = genreId)
     }
 }

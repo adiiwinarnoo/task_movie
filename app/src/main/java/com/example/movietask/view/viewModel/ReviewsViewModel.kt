@@ -11,12 +11,12 @@ class ReviewsViewModel : ViewModel() {
     var reviewRepo = ReviewRepository()
     var reviewData = MutableLiveData<ResponseReviews>()
 
-    fun getReviews(idMovie: Int, apiKey : String) : MutableLiveData<ResponseReviews>{
-        Log.d("API-REVIEWS", "onFailure: VM}")
-        reviewRepo.getReviews(apiKey = apiKey, movieId = idMovie){
-            reviewData.postValue(it)
-        }
-        return reviewData
-    }
+//    fun getReviews(idMovie: Int, apiKey : String) : MutableLiveData<ResponseReviews>{
+//        Log.d("API-REVIEWS", "onFailure: VM}")
+//        reviewRepo.getReviews(apiKey = apiKey, movieId = idMovie){
+//            reviewData.postValue(it)
+//        }
+//        return reviewData
+//    }
 
 }
